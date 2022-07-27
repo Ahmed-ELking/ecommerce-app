@@ -1,9 +1,15 @@
 import {Outlet, Link} from "react-router-dom"
+import {useContext} from "react"
 
 import {ReactComponent as Logo} from "../../../assets/086 crown.svg"
+import {UserContext} from "../../../contexts/user.contexts"
+import {signOutUser} from "../../../utils/firebase/firebase.utils"
 
 
 const Navigation = () => {
+
+  const {currentUser} = useContext(UserContext)
+
   return (
     <>
       <div className="mb-3 h-20 w-full flex justify-between">
@@ -14,9 +20,13 @@ const Navigation = () => {
           <Link className="p-2 border border-black border-solid rounded-md shadow-md shadow-gray-300 hover:bg-slate-400 hover:text-white" to="/shop">
             SHOP
           </Link>
-          <Link className="p-2 border border-black border-solid rounded-md shadow-md shadow-gray-300 hover:bg-slate-400 hover:text-white" to="/auth">
+          {
+            currentUser ? <span onClick={signOutUser} className="cursor-pointer p-2 border border-black border-solid rounded-md shadow-md shadow-gray-300 hover:bg-slate-400 hover:text-white" >SIGN OUT</span>
+            : 
+            <Link className="p-2 border border-black border-solid rounded-md shadow-md shadow-gray-300 hover:bg-slate-400 hover:text-white" to="/auth">
             SIGN IN
-          </Link>
+            </Link>
+          }
         </div>
       </div>
       <Outlet />

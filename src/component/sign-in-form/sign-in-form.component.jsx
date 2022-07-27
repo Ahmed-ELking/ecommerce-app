@@ -1,8 +1,7 @@
 import {useState} from "react"
 
 import {
-  signInWithGooglePopup, 
-  createUserDocumentFromAuth,
+  signInWithGooglePopup,
   signInAuthUserWithEmailAndPassword 
   } 
   from "../../utils/firebase/firebase.utils"
@@ -24,8 +23,7 @@ const SignIn = () => {
 
   const signInWithGoogle = async () => {
     try {
-      const {user} = await signInWithGooglePopup()
-      await createUserDocumentFromAuth(user)
+      await signInWithGooglePopup()
     } catch (error) {
       console.log("User creation encountered an error: ", error.message)
     }
@@ -40,9 +38,9 @@ const SignIn = () => {
     event.preventDefault()
 
     try {
-        const response = await signInAuthUserWithEmailAndPassword(email, password)
-        console.log(response);
+        await signInAuthUserWithEmailAndPassword(email, password)
         resetForm()
+
     } catch (error) {
         switch (error.code) {
             case "auth/user-not-found":
