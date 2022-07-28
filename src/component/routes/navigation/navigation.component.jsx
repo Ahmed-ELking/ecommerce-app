@@ -2,13 +2,20 @@ import {Outlet, Link} from "react-router-dom"
 import {useContext} from "react"
 
 import {ReactComponent as Logo} from "../../../assets/086 crown.svg"
-import {UserContext} from "../../../contexts/user.contexts"
+
+import {UserContext} from "../../../contexts/user.context"
+import {CartContext} from "../../../contexts/cart.context"
+
 import {signOutUser} from "../../../utils/firebase/firebase.utils"
+
+import CartIcon from "../../cart-icon/cart-icon.component"
+import CartDropdown from "../../cart-dropdown/cart-dropdown.component"
 
 
 const Navigation = () => {
 
   const {currentUser} = useContext(UserContext)
+  const {isCartOpen} = useContext(CartContext)
 
   return (
     <>
@@ -27,7 +34,9 @@ const Navigation = () => {
             SIGN IN
             </Link>
           }
+          <CartIcon />
         </div>
+        {isCartOpen && <CartDropdown />}
       </div>
       <Outlet />
     </>
