@@ -19,7 +19,7 @@ const Navigation = () => {
 
   return (
     <>
-      <div className="mb-3 h-20 w-full flex justify-between">
+      <div className="mb-6 h-20 w-full flex justify-between">
         <Link className="md:ml-6 h-full w-20 p-5" to="/">
           <Logo />
         </Link>

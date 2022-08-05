@@ -19,7 +19,7 @@ const categories =
   },
   {
     "id": 4,
-    "title": "women's",
+    "title": "womens",
     "imageUrl": "https://i.ibb.co/GCCdy8t/womens.png"
   },
   {
