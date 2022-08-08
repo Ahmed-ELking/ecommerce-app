@@ -13,7 +13,7 @@ const CartIcon = () => {
     const toggleIsCartOpen = () => dispatch(setIsCartOpen(!isCartOpen))
 
     return (
-        <div onClick={toggleIsCartOpen} className="w-11 h-11 flex justify-center items-center relative cursor-pointer">
+        <div onClick={toggleIsCartOpen} className="w-11 h-11 flex justify-center items-center relative cursor-pointer select-none">
             <ShoppingIcon className="w-8 h-8" />
             <span className="absolute text-[10px] font-bold bottom-3">{cartCount}</span>
         </div>
