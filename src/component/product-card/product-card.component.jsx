@@ -1,13 +1,15 @@
-import {useContext} from "react"
+import {useDispatch, useSelector} from "react-redux"
 
-import {CartContext} from "../../contexts/cart.context"
+import {addItemToCart} from "../../store/cart/cart.action"
+import {selectCartItems} from "../../store/cart/cart.selector"
 
 const ProductCard = ({product}) => { 
 
     const {name, imageUrl, price} = product
+    const cartItems = useSelector(selectCartItems)
 
-    const {addItemToCart} = useContext(CartContext)
-    const addProductToCart = () => addItemToCart(product)
+    const dispatch = useDispatch()
+    const addProductToCart = () => dispatch(addItemToCart(cartItems, product))
 
     return (
         <div className="w-full flex flex-col items-center h-[350px] relative group">

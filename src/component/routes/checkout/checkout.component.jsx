@@ -1,14 +1,14 @@
-import {useContext} from "react"
+import {useSelector} from "react-redux"
 
-import {CartContext} from "../../../contexts/cart.context"
+import {selectCartItems, selectCartTotal} from "../../../store/cart/cart.selector"
 import CheckoutItem from "../../checkout-item/checkout-item.component"
 
 const HEADER_BLOCK = "md:w-[23%] text-sm md:text-base capitalize text-red-400 font-bold"
 
 const Checkout = () => {
 
-    const {cartItems, cartTotal} = useContext(CartContext)
-
+    const cartItems = useSelector(selectCartItems)
+    const cartTotal = useSelector(selectCartTotal)
     return (
         <div className="select-none w-[90%] md:w-[56%] min-h-[90vh] flex flex-col items-center mx-auto mt-[50px]">
             <div className="w-full py-[10px] flex justify-between border-b border-b-gray-400">
