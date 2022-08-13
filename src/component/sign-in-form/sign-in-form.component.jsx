@@ -1,60 +1,56 @@
-import {useState} from "react"
-
-import {
-  signInWithGooglePopup,
-  signInAuthUserWithEmailAndPassword 
-  } 
-  from "../../utils/firebase/firebase.utils"
+import { useState } from "react"
+import { useDispatch } from "react-redux"
 
 import FormInput from "../form-input/form-input.component"
+import { googleSignInStart, emailSignInStart } from "../../store/user/user.action"
 
 const initialFormFields = {
     email: "",
     password: "",
 }
+
 const SignIn = () => {
 
-  const [formFields, setFormFields] = useState(initialFormFields)
-  const {email, password} = formFields
+  const dispatch = useDispatch()
+
+  const [ formFields, setFormFields ] = useState( initialFormFields )
+  const { email, password } = formFields
 
   const resetForm = () => {
-        setFormFields(initialFormFields)
+    setFormFields( initialFormFields )
     }
 
   const signInWithGoogle = async () => {
-    try {
-      await signInWithGooglePopup()
-    } catch (error) {
-      console.log("User creation encountered an error: ", error.message)
-    }
+    dispatch( googleSignInStart() )
   }
 
   const handleChange = (event) => {
-        const {name, value} = event.target
-        setFormFields({...formFields, [name]: value})
+    const { name, value } = event.target
+    setFormFields( { ...formFields, [ name ]: value } )
     }
   
   const handleSubmit = async (event) => {
     event.preventDefault()
 
-    try {
-        await signInAuthUserWithEmailAndPassword(email, password)
-        resetForm()
+    try
+    {
+      dispatch( emailSignInStart( email, password ) )
+      resetForm()
 
-    } catch (error) {
-        switch (error.code) {
-            case "auth/user-not-found":
-                alert("no user associated to this email address")
-                break;
-            case "auth/wrong-password":
-                alert("incorrect password for this email address")
-                break;
-            default:
-                alert("Please sign up first or use google sign in")
-        }
-        
-        }
+    } catch ( error )
+    {
+      switch (error.code) {
+        case "auth/user-not-found":
+          alert( "no user associated to this email address" )
+          break;
+        case "auth/wrong-password":
+          alert( "incorrect password for this email address" )
+          break;
+        default:
+          alert( "Please sign up first or use google sign in" )
+      }
     }
+  }
 
   return (
     <div className="flex flex-col w-96">
