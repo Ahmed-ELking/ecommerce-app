@@ -1,7 +1,8 @@
-import {useDispatch, useSelector} from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
-import {addItemToCart} from "../../store/cart/cart.action"
-import {selectCartItems} from "../../store/cart/cart.selector"
+import { addItemToCart } from "../../store/cart/cart.action"
+import { selectCartItems } from "../../store/cart/cart.selector"
+import { Button, BUTTON_TYPE_CLASS } from "../button/button.component"
 
 const ProductCard = ({product}) => { 
 
@@ -18,7 +19,7 @@ const ProductCard = ({product}) => {
                 <span>{name}</span>
                 <span>{price}</span>
             </div>
-            <button onClick={addProductToCart} className="btn-primary invisible sm:w-fit w-[80%] opacity-70 absolute top-[255px] bg-white text-black border border-solid border-black hover:bg-black hover:text-white hover:border-none group-hover:opacity-80 group-hover:visible">ADD TO CARD</button>
+            <Button onClick={addProductToCart} className={`${BUTTON_TYPE_CLASS.base} ${BUTTON_TYPE_CLASS.inverted} invisible sm:w-fit w-[80%] opacity-70 absolute top-[255px] group-hover:opacity-80 group-hover:visible`}>ADD TO CARD</Button>
         </div>
     )
 }

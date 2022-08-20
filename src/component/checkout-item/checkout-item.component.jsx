@@ -1,17 +1,17 @@
-import {useDispatch, useSelector} from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
-import {clearItemFromCart, addItemToCart, removeItemFromCart} from "../../store/cart/cart.action"
+import { clearItemFromCart, addItemToCart, removeItemFromCart } from "../../store/cart/cart.action"
 import {selectCartItems} from "../../store/cart/cart.selector"
 
-const CheckoutItem = ({cartItem}) => {
-
+const CheckoutItem = ( { cartItem } ) =>
+{
     const dispatch = useDispatch()
-    const cartItems = useSelector(selectCartItems)
-    const {name, imageUrl, price, quantity} = cartItem
+    const cartItems = useSelector( selectCartItems )
+    const { name, imageUrl, price, quantity } = cartItem
 
-    const clearItemHandler = () => dispatch(clearItemFromCart(cartItems, cartItem))
-    const addItemHandler = () => dispatch(addItemToCart(cartItems, cartItem))
-    const removeItemHandler = () => dispatch(removeItemFromCart(cartItems, cartItem))
+    const clearItemHandler = () => dispatch( clearItemFromCart( cartItems, cartItem ) )
+    const addItemHandler = () => dispatch( addItemToCart( cartItems, cartItem ) )
+    const removeItemHandler = () => dispatch( removeItemFromCart( cartItems, cartItem ) )
 
     return (
         <div className="w-full flex items-center min-h-[100px] border-b border-b-gray-400 py-4 text-sm md:text-xl">

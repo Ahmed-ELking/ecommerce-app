@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux"
 
 import { signUpStart } from "../../store/user/user.action"
 import FormInput from "../form-input/form-input.component"
+import { Button, BUTTON_TYPE_CLASS } from "../button/button.component"
 
 
 const initialFormFields = {
@@ -23,10 +24,12 @@ const SignUp = () => {
         setFormFields( initialFormFields )
     }
     
+
     const handleChange = (event) => {
         const { name, value } = event.target
         setFormFields( { ...formFields, [ name ]: value } )
     }
+
 
     const handleSubmit = async (event) => {
         event.preventDefault()
@@ -47,7 +50,7 @@ const SignUp = () => {
             }
         }
     }
-
+    
   return (
     <div className="flex flex-col w-96" >
       <h2 className="my-2 text-2xl font-black">Don't have an account</h2>
@@ -61,7 +64,7 @@ const SignUp = () => {
 
         <FormInput label="Confirm password" required type="password" name="confirmPassword" onChange={handleChange} value={confirmPassword} />
 
-        <button className="btn-primary mx-auto mb-3 mt-4" type="submit">Sign Up</button>
+        <Button className={`${BUTTON_TYPE_CLASS.base} mx-auto mb-3 mt-4`} type="submit">Sign Up</Button>
       </form>
     </div>
   )

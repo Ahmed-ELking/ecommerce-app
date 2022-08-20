@@ -1,8 +1,9 @@
-import {useSelector} from "react-redux"
+import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 
-import {selectCartItems} from "../../store/cart/cart.selector"
+import { selectCartItems } from "../../store/cart/cart.selector"
 import CartItem from "../cart-item/cart-item.component"
+import { Button, BUTTON_TYPE_CLASS } from "../button/button.component"
 
 const CartDropdown = () => {
 
@@ -23,7 +24,7 @@ const CartDropdown = () => {
                 : (<span className="md:text-lg my-12 mx-auto">YOUR CART IS EMPTY</span>)
             }
             
-            <button onClick={goToCheckoutHandler} className="btn-primary px-3 mt-auto">GO TO CHECKOUT</button>
+            <Button onClick={goToCheckoutHandler} className={`${BUTTON_TYPE_CLASS.base} px-3 mt-auto`}>GO TO CHECKOUT</Button>
         </div>
     )
 }
